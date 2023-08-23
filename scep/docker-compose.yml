@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  scep:
+    image: registry.digitalocean.com/maos/scep:latest
+    container_name: scep
+    environment:
+      - SCEP_FILE_DEPOT=/depot
+      - SCEP_CERT_RENEW=0
+      - SCEP_LOG_DEBUG=true
+    ports:
+      - 8888:8080
+    volumes:
+      - ${DOCKER_STORAGE}/scep/depot:/depot
+    networks:
+      - traefik
+    restart: unless-stopped
+
+networks:
+  traefik:
+    external: true

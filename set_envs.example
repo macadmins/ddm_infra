@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Replace with your actual domain which you control
+export BASE_DOMAIN="mydomain.com"
+
+# This should be a writable path on your docker host.
+export DOCKER_DIR="/srv/docker"
+export DOCKER_STORAGE="${DOCKER_DIR}/storage"
+export TZ="America/New_York"
+# Don't change this value
+export CLOUD_ENV="prod"

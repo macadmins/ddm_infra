@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  nanomdm:
+    image: registry.digitalocean.com/maos/nanomdm:latest
+    container_name: nanomdm
+    command:
+      - "-api=${NANOMDM_API_KEY}"
+      - "-ca=/certs/ca.pem"
+      - "-debug=true"
+      - "-dm=http://kmfddm:9002"
+      - "-dump=true"
+    volumes:
+      - ${DOCKER_STORAGE}/nanomdm/certs:/certs
+      - ${DOCKER_STORAGE}/nanomdm/db:/db
+    networks:
+      - traefik
+    restart: unless-stopped
+  kmfddm:
+    image: ghcr.io/jessepeterson/kmfddm:latest
+    container_name: kmfddm
+    command:
+      - "-api=${DDM_API_KEY}"
+      - "-enqueue=http://nanomdm:9000/v1/enqueue/"
+      - "-enqueue-key=${NANOMDM_API_KEY}"
+      - "-dump-status=-"
+      - "-debug"
+    volumes:
+      - ${DOCKER_STORAGE}/kmfddm/db:/app/db
+    networks:
+      - traefik
+    restart: unless-stopped
+
+networks:
+  traefik:
+    external: true

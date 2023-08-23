@@ -1,0 +1,50 @@
+[global]
+checkNewVersion = true
+sendAnonymousUsage = false
+
+[serversTransport]
+insecureSkipVerify = true
+
+[entryPoints.http]
+address = ":80"
+
+[entryPoints.https]
+address = ":443"
+
+#chamgeme
+[certificatesResolvers.le.acme]
+email = "domains@macadmins.io"
+storage = "/etc/traefik/acme/acme.json"
+[certificatesResolvers.le.acme.tlsChallenge]
+
+
+# Request wildcard certificates per https://docs.traefik.io/configuration/acme/#wildcard-domains
+[[le.domains]]
+main = "*.macadmins.io"
+sans = ["macadmins.io"]
+
+
+[providers.docker]
+
+defaultRule = "Host(`{{ coalesce (index .Labels \"traefik.subdomain\") .Name }}.{{ env \"BASE_DOMAIN\" }}`)"
+network = "traefik"
+exposedByDefault = false
+
+# figure out [metrics]
+
+#removeme or #changeme
+# there are some feautes that you can only do via traefik toml configs. I use this file for that
+[providers]
+[providers.file]
+filename = "/etc/traefik/servers.toml"
+watch = true
+
+
+[api]
+dashboard = true
+insecure = true
+
+[log]
+#level = "DEBUG"
+
+[accessLog]

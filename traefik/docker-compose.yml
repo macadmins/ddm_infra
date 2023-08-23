@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+
+  traefik:
+    image: "traefik"
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    # there are some feautes that you can only do via traefik toml configs.
+    command:
+      - "--providers.file=true"
+      - "--providers.file.filename=/etc/traefik/servers.toml"
+    volumes:
+      - "./traefik.toml:/etc/traefik/traefik.toml:ro"
+      - "./servers.toml:/etc/traefik/servers.toml"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ${DOCKER_STORAGE}/traefik/acme:/etc/traefik/acme
+      - ${DOCKER_STORAGE}/traefik/htpasswd/:/htpasswd
+    environment:
+      - BASE_DOMAIN=${BASE_DOMAIN}
+    networks:
+      - traefik
+    restart: always
+# command:
+#   - --certresolv.myresolver.acme.storage=/etc/traefik/acme/acme.json
+
+networks:
+  traefik:
+    external: true

@@ -1,0 +1,13 @@
+#[http.routers]
+#  [http.routers.example]
+#    rule = "Host(`example.macadmins.io`)"
+#    entrypoints = ["https"]
+#    service = "example"
+#    [http.routers.example.tls]
+#      certResolver = "le"
+#
+#[http.services]
+#  # Define how to reach an existing service on our infrastructure
+#  [http.services.example.loadBalancer]
+#    [[http.services.example.loadBalancer.servers]]
+#      url = "http://0.0.0.0:8443"
