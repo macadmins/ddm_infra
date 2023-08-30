@@ -13,7 +13,7 @@ address = ":443"
 
 #chamgeme
 [certificatesResolvers.le.acme]
-email = "domains@macadmins.io"
+email = "domains@example.com"
 storage = "/etc/traefik/acme/acme.json"
 [certificatesResolvers.le.acme.tlsChallenge]
 
