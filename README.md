@@ -11,6 +11,11 @@ For this setup, it assumes it is running on a dedicated docker host with no othe
 - Set up a DNS entries on your domain for the following name which point to the public IP address of your docker host:
   - nanomdm.YOURDOMAIN.com
   - ddm.YOURDOMAIN.com
+  - traefik.YOURDOMAIN.com
+
+or even better, if you can, use a wildcard:
+
+  - *.YOURDOMAIN.com
 
 Confirm that these resolve to the IP address of your docker host before proceeding.
 
