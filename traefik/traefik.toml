@@ -13,15 +13,15 @@ address = ":443"
 
 #chamgeme
 [certificatesResolvers.le.acme]
-email = "domains@example.com"
+email = "you@YOURDOMAIN.com"
 storage = "/etc/traefik/acme/acme.json"
 [certificatesResolvers.le.acme.tlsChallenge]
 
 
 # Request wildcard certificates per https://docs.traefik.io/configuration/acme/#wildcard-domains
 [[le.domains]]
-main = "*.macadmins.io"
-sans = ["macadmins.io"]
+main = "*.YOURDOMAIN.com"
+sans = ["YOURDOMAIN.com"]
 
 
 [providers.docker]

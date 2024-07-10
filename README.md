@@ -37,6 +37,8 @@ cp set_secrets.example set_secrets
 # Generate your API keys and save them in set_secrets.sh
 ```
 
+Also, make sure to edit `traefik/traefik.toml` and replace all YOURDOMAIN entries with your actual. This *will not work* unless your domain is set correctly in `traefik.toml`.
+
 ##### Spinning it up
 For this stack to work correctly, we must spin up the services in a specific order the first time we kick them off.
 
