@@ -1,2 +1,3 @@
 *.env
 set_secrets
+set_envs

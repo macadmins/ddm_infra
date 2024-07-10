@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   nanomdm:
-    image: registry.digitalocean.com/maos/nanomdm:latest
+    image: ghcr.io/micromdm/nanomdm:latest
     container_name: nanomdm
     command:
       - "-api=${NANOMDM_API_KEY}"

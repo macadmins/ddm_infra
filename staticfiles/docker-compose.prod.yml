@@ -1,13 +1,11 @@
-version: "3.8"
-
 services:
-  staticfiles:
+  staticfilesnew:
     labels:
       # The following keys are all required for all exposed services.
       - traefik.enable=true
-      - traefik.http.routers.staticfiles.entrypoints=https
-      - traefik.http.routers.staticfiles.tls=true
-      - traefik.http.routers.staticfiles.tls.certresolver=le
+      - traefik.http.routers.staticfilesnew.entrypoints=https
+      - traefik.http.routers.staticfilesnew.tls=true
+      - traefik.http.routers.staticfilesnew.tls.certresolver=le
 
       # The default subdomain is generated from the container name and project
       # name (mscpmdm-example for this service). You can provide a different name
@@ -16,4 +14,4 @@ services:
 
       # If the service exposes more than a single port, you must specify which
       # one is the HTTP port using this.
-      - traefik.http.services.staticfiles.loadbalancer.server.port=8080
+      # - traefik.http.services.staticfilesnew.loadbalancer.server.port=8081

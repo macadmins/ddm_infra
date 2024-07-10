@@ -41,7 +41,8 @@ watch = true
 
 
 [api]
-dashboard = true
+# Set this to true to enable the traefik dashboard
+dashboard = false
 insecure = true
 
 [log]

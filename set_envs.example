@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Replace with your actual domain which you control
+# Replace with your actual domain which you control and have pointed at your public IP
 export BASE_DOMAIN="mydomain.com"
 
 # This should be a writable path on your docker host.
