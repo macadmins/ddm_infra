@@ -1,8 +1,9 @@
 #  nanoMDM/kmfddm Docker Examples
 
 #### Prerequisties
-- A domain which you can configure DNS on
-- A dedicated host with docker running on it (or one that doesn't use ports 443/80/8080)
+- Domain which you can configure DNS on
+- Dedicated host with docker running on it (or one that doesn't use ports 443/80/8080)
+- Valid APNS cert (See: https://github.com/micromdm/micromdm/blob/main/docs/user-guide/quickstart.md#configure-an-apns-certificate)
 
 #### Quickstart
 
@@ -99,9 +100,21 @@ docker logs -f nanomdm
 docker logs -f kmfddm
 ```
 
-Once everything looks happy, edit enroll.mobileconfig so it has your actual domain instead of `YOURDOMAIN.COM`.
+- Edit enroll.mobileconfig
+  - Set your actual domain instead of `YOURDOMAIN.COM` for both the SCEP and nanomdm URLs. Note: the nanomdm url MUST have the `/mdm` after the domain
+  - Set the Topic key to the actual topic of the APNS cert that was created as part of the prerequities:
+```
+			<key>Topic</key>
+			<string>$YOUR_TOPIC_HERE</string>
+```
 
-After editing `enroll.mobileconfig` to match your domain, try enrolling a test node and confirm the enrollment by looking at the log files for nanomdm
+
+After editing `enroll.mobileconfig` to match your domain, run:
+```
+./bounce nanomdm
+```
+
+And then try enrolling a test node and confirm the enrollment by looking at the log files for nanomdm.
 
 
 ----
