@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   scep:
-    image: registry.digitalocean.com/maos/scep:latest
+    image: natewalck/scep:latest
     container_name: scep
     environment:
       - SCEP_FILE_DEPOT=/depot

@@ -61,6 +61,34 @@ docker logs -f traefik
 docker logs -f staticfiles
 ```
 
+- SCEP server
+Before running the scep server, we need to generate a new CA for it.
+
+- Download the scepserver binary: https://github.com/micromdm/scep/releases
+- Setup the CA:
+```bash
+# init the ca
+scepserver ca -init
+
+# copy the resulting files into the docker storage for our container
+mkdir /srv/docker/storage/scep/depot/
+cp depot/* /srv/docker/storage/scep/depot/
+```
+
+Stand up the scep server.
+```bash
+./compose.sh scep up -d
+# Make sure it is running and happy
+docker logs -f scep
+```
+
+Once the scep server is up, there will be a file in the following path which needs to be moved into  the nanomdm's storage:
+
+```
+mkdir /srv/docker/storage/nanomdm/certs/
+cp /srv/docker/storage/scep/depot/ca.pem /srv/docker/storage/nanomdm/certs/
+```
+
 - nanoMDM spinup
 ``` bash
 ./compose.sh nanomdm up -d
