@@ -111,7 +111,7 @@ docker logs -f kmfddm
 
 After editing `enroll.mobileconfig` to match your domain, run:
 ```
-./bounce nanomdm
+./bounce.sh nanomdm
 ```
 
 And then try enrolling a test node and confirm the enrollment by looking at the log files for nanomdm.
