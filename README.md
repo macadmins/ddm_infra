@@ -12,6 +12,8 @@ For this setup, it assumes it is running on a dedicated docker host with no othe
   - nanomdm.YOURDOMAIN.com
   - ddm.YOURDOMAIN.com
   - traefik.YOURDOMAIN.com
+  - scep.YOURDOMAIN.com
+  - files.YOURDOMAIN.com
 
 or even better, if you can, use a wildcard:
 
